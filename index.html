@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Message For You 🥰</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* --- CSS STYLES --- */
+        :root {
+            --dark-bg: #111111;
+            --card-bg: #222222;
+            --neon-pink: #ff69b4;
+            --text-color: #f0f0f0;
+            --border-glow: 0 0 10px var(--neon-pink), 0 0 20px var(--neon-pink);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            overflow: hidden; /* Hide the scrollbar */
+        }
+
+        .container {
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* CARD STYLING (Main content box) */
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 20px;
+            padding: 30px 20px;
+            margin-top: 20px;
+            box-shadow: var(--border-glow);
+            border: 2px solid var(--neon-pink);
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* AVATAR STYLING */
+        .avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: #fff; /* Placeholder background */
+            margin: 0 auto 20px;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 3px solid var(--neon-pink);
+            box-shadow: var(--border-glow);
+        }
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* INPUT FIELD STYLING */
+        .input-box {
+            margin: 20px 0;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 15px 10px;
+            margin-bottom: 20px;
+            border: 2px solid var(--neon-pink);
+            border-radius: 10px;
+            background-color: #333;
+            color: var(--text-color);
+            font-size: 1em;
+            text-align: center;
+            box-shadow: var(--border-glow);
+            outline: none;
+            box-sizing: border-box;
+        }
+
+        /* BUTTON STYLING */
+        .neon-button {
+            background-color: var(--neon-pink);
+            color: var(--dark-bg);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 20px;
+            font-size: 1.1em;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: var(--border-glow);
+            transition: all 0.2s ease;
+        }
+        .neon-button:hover {
+            opacity: 0.9;
+            transform: scale(1.05);
+        }
+
+        /* START SCREEN HEART */
+        #start-heart {
+            font-size: 5em;
+            color: var(--neon-pink);
+            cursor: pointer;
+            margin-bottom: 20px;
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.7; }
+            50% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.7; }
+        }
+
+        /* INTERACTIVE HEARTS STYLING */
+        .heart-clicks {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .clickable-heart {
+            font-size: 2.5em;
+            cursor: pointer;
+            color: var(--neon-pink);
+            transition: transform 0.1s ease;
+        }
+        .clickable-heart:active {
+            transform: scale(0.9);
+        }
+        .clicked {
+            color: gray;
+            cursor: default;
+        }
+
+        /* PICK-UP LINE STYLING */
+        .pickup-line-content {
+            font-size: 1.2em;
+            font-weight: 600;
+            line-height: 1.6;
+            min-height: 150px; /* Ensure content box is tall enough */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+        }
+
+        /* COUNTDOWN STYLING */
+        .countdown-timer {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: #ffc107;
+            margin-top: 10px;
+        }
+        .countdown-timer i {
+            margin-right: 5px;
+        }
+        
+        /* UTILITY CLASSES */
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="avatar-img-url" class="hidden">https://i.imgur.com/8Qj8nFq.png</div>
+
+        <div id="stage-1" class="card">
+            <i id="start-heart" class="fas fa-heart"></i>
+            <p><strong>Touch the Heart!</strong></p>
+            <p style="font-size: 0.8em; opacity: 0.6;">@code_with_prashant (@__.parshya_08)</p>
+        </div>
+
+        <div id="stage-2" class="card hidden">
+            <h2 id="name-prompt">Enter Your Name 🥰</h2>
+            <div class="input-box">
+                <input type="text" id="user-name-input" placeholder="Your Name">
+                <button class="neon-button" onclick="goToStage3()">Start</button>
+            </div>
+        </div>
+
+        <div id="stage-3" class="hidden">
+            <div class="avatar">
+                <img src="" alt="Avatar" id="crush-avatar">
+            </div>
+            <h2 id="greeting-text">Hieee, [Name] 🧑‍🌾</h2>
+            <div class="card" style="padding: 20px; margin-top: 0;">
+                <div id="interaction-box">
+                    <p id="hearts-prompt">Click these hearts! 👆</p>
+                    <div class="heart-clicks">
+                        <i class="fas fa-heart clickable-heart" data-id="1" onclick="clickHeart(this)"></i>
+                        <i class="fas fa-heart clickable-heart" data-id="2" onclick="clickHeart(this)"></i>
+                        <i class="fas fa-heart clickable-heart" data-id="3" onclick="clickHeart(this)"></i>
+                        <i class="fas fa-heart clickable-heart" data-id="4" onclick="clickHeart(this)"></i>
+                    </div>
+                </div>
+                
+                <div id="pickup-line-box" class="pickup-line-content hidden">
+                    </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('crush-avatar').src = document.getElementById('avatar-img-url').textContent;
+        const stages = ['stage-1', 'stage-2', 'stage-3'];
+        let heartsClicked = 0;
+        let userName = '';
+        let countdownTimer;
+
+        // --- STAGE CONTROL FUNCTIONS ---
+
+        function showStage(stageId) {
+            stages.forEach(id => {
+                document.getElementById(id).classList.add('hidden');
+            });
+            document.getElementById(stageId).classList.remove('hidden');
+        }
+
+        // 1. Initial Start Button Handler
+        document.getElementById('start-heart').addEventListener('click', () => {
+            showStage('stage-2');
+            document.getElementById('user-name-input').focus();
+        });
+
+        // 2. Name Input Handler
+        function goToStage3() {
+            userName = document.getElementById('user-name-input').value.trim();
+            if (userName.length === 0) {
+                alert("Please enter your name to continue!");
+                return;
+            }
+            
+            // Update greeting text
+            const greetingElement = document.getElementById('greeting-text');
+            greetingElement.innerHTML = `Hieee, ${userName} <span style="font-size: 1.2em;">🌸</span>`;
+            
+            showStage('stage-3');
+        }
+
+        // 3. Interactive Hearts Handler
+        function clickHeart(heartElement) {
+            if (heartElement.classList.contains('clicked')) return;
+
+            heartsClicked++;
+            heartElement.classList.add('clicked');
+            heartElement.style.color = '#ff69b4'; // Keep the color to show it was the last click
+
+            // Once the last heart is clicked
+            if (heartsClicked === 4) {
+                document.getElementById('interaction-box').classList.add('hidden');
+                document.getElementById('pickup-line-box').classList.remove('hidden');
+                
+                // Start the reveal sequence
+                startRevealSequence();
+            } else {
+                 // For visual effect, make the latest clicked heart stand out
+                document.querySelectorAll('.clickable-heart').forEach(h => {
+                    if (h !== heartElement && !h.classList.contains('clicked')) {
+                        h.style.color = 'var(--neon-pink)';
+                    }
+                });
+            }
+        }
+
+        // 4. Final Reveal Sequence
+        function startRevealSequence() {
+            const box = document.getElementById('pickup-line-box');
+            box.innerHTML = `<p style="font-size: 1.5em; font-weight: 700;">I Want to Ask You!</p>`;
+
+            setTimeout(() => {
+                box.innerHTML = `<p style="font-size: 1.5em; font-weight: 700;">Are you a magnet??</p><p class="countdown-timer"><i class="fas fa-hourglass-half"></i> 3</p>`;
+                startCountdown(3);
+            }, 2000); // Wait 2 seconds before asking the question
+        }
+
+        function startCountdown(seconds) {
+            let count = seconds;
+            const box = document.getElementById('pickup-line-box');
+            
+            countdownTimer = setInterval(() => {
+                count--;
+                box.querySelector('.countdown-timer').innerHTML = `<i class="fas fa-hourglass-half"></i> ${count}`;
+
+                if (count === 0) {
+                    clearInterval(countdownTimer);
+                    box.querySelector('.countdown-timer').innerHTML = `<i class="fas fa-hourglass-half"></i> 0`;
+                    
+                    setTimeout(revealPunchline, 1000); // Wait 1 second before the punchline
+                }
+            }, 1000);
+        }
+
+        function revealPunchline() {
+            const box = document.getElementById('pickup-line-box');
+            box.innerHTML = `
+                <p>It's just weird, because you</p>
+                <p style="font-size: 1.8em; font-weight: 700; color: var(--neon-pink);">attract my Heart a lot 🥺</p>
+                <div style="height: 10px;"></div>
+                <p style="opacity: 0.5;">Sdzndkjor = <span style="font-size: 1.5em;">ღ</span></p>
+                <div style="height: 10px;"></div>
+                <p style="font-weight: 600;">Mmmm..</p>
+                <p style="font-weight: 700; color: var(--neon-pink);">I.. Yes, i'm in love with you <span style="font-size: 1.5em;">💌</span></p>
+                <p style="font-size: 0.9em; opacity: 0.7; margin-top: 10px;">I mean nvm- <span style="font-size: 1.2em;">😂🙈💕</span></p>
+            `;
+        }
+
+        // Initialize to Stage 1
+        showStage('stage-1');
+    </script>
+</body>
+</html>

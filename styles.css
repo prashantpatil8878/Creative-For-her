@@ -1,0 +1,19 @@
+.glowing-button {
+  background-color: #2a003a; /* Dark purple */
+  color: #fff;
+  border: 2px solid #ff00ff; /* Neon pink border */
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: 18px;
+  /* The magic for the neon glow */
+  box-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 40px rgba(255, 0, 255, 0.5);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.glowing-button:hover {
+  background-color: #ff00ff;
+  color: #000;
+  /* A subtle change on hover */
+  box-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff;
+}
